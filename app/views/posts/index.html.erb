@@ -1,0 +1,28 @@
+<% if @posts.count > 0 %>
+	<table class='table table-striped table-bordered'>
+	  <caption class='lead'>All query</caption>
+	  <tr class='success'>
+	  	<th>#</th>
+	    <th>Query</th>
+	    <th>Search type</th>
+	    <th>Receiving line</th>
+	    <th>Fined</th>
+	    <th>Actions</th>
+	  </tr>
+	  <% @posts.each do |post| %>
+	    <tr class='success'>
+	      <td><%= post.id %></td>
+	      <td><%= post.query %></td>
+	      <td><%= post.search_type %></td>
+	      <td><%= post.search_question %></td>
+	      <% if post.fined_query == 't' %>
+	        <td><div class='green'></div></td>
+	      <% else %>
+	        <td><div class='red'></div></td>
+	      <% end %>
+	      <td><%= link_to 'show', post_path(post.id), :class => 'btn btn-info btn-mini' %></td>
+	    </tr>
+	  <% end %>
+	</table>
+<% end %>
+<%= link_to 'new', new_post_path, :class => 'btn btn-success'  %>

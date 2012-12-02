@@ -1,0 +1,48 @@
+<div class="container">
+<div class="row">
+  <div class="span8">
+  <% if @number != 'Nothing not found' %>	
+	<%= image_tag(@post.id.to_s+'.png', :size => "750x800", :alt => "Request image") %>
+  <% else %>
+	<%= image_tag('search_thumb.jpg', :size => "750x800", :alt => "Try again") %>
+  <% end %>
+  </div>
+  <div class="span4">
+	<h2>Parameters of query: </h2>
+
+	<blockquote>
+	<p><%= @post.query %></p>
+	<small>Search request</small>
+	</blockquote>
+
+	<blockquote>
+	<p><%= @post.search_type %></p>
+	<small>Type of search system</small>
+	</blockquote>
+
+	<blockquote>
+	<p><%= @post.search_question %></p>
+	<small>What you expecting to get</small>
+	</blockquote>
+
+
+	<% if @number != 'Nothing not found' %>
+	  <div class='actions_on_show_page'>
+	    <%= link_to "Link to your query", "#{@uri}" %>
+	  </div>
+	  <div id='gettign_number'><%= @number %></div>
+	<% else %>
+      <blockquote class="pull-right">
+        <p class="lead_error">Not fined</p>
+        <small><cite title="Source Title">Your search did not match</cite></small>
+      </blockquote>
+	<% end %>
+	<div class='clear'></div>
+	<div class='actions_on_show_page'>
+		<%= link_to 'New query', new_post_path, :class => 'btn btn-info btn-mini' %>
+		<%= link_to 'All query', posts_path, :class => 'btn btn-info btn-mini' %>
+		<%= link_to 'Edit current query', edit_post_path, :class => 'btn btn-warning btn-mini' %>
+	</div>
+  </div>
+</div>
+</div>
